@@ -268,19 +268,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue"
   display:flex;flex-direction:column;
   width:100%;max-width:600px;
   left:50%;transform:translateX(-50%);
-  padding-top:var(--st);
-  height:100%;height:100dvh;
+  height:100vh;height:100dvh;
+  overflow:hidden;
 }
 .sp-top{
   display:flex;align-items:center;gap:10px;
-  padding:12px 14px;background:var(--card);
-  box-shadow:0 .5px 0 rgba(0,0,0,.1);flex-shrink:0;
+  padding:calc(var(--st) + 12px) 14px 12px;
+  background:var(--card);
+  box-shadow:0 .5px 0 rgba(0,0,0,.12);
+  flex-shrink:0;min-height:0;
 }
 .sp-back{height:32px;padding:0 4px;border:none;background:none;color:var(--accent);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px}
 .sp-back span{font-size:14px;font-weight:600}
 .sp-title{flex:1;font-size:16px;font-weight:700}
 .sp-add{height:32px;padding:0 13px;border:none;border-radius:10px;background:var(--accent);color:#fff;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px}
 .sp-add:active{background:var(--accent2)}
+.ep-save-top{height:32px;padding:0 14px;border:none;border-radius:10px;background:var(--accent);color:#fff;font-size:13px;font-weight:700;cursor:pointer;flex-shrink:0}
+.ep-save-top:active{background:var(--accent2)}
+.sp-footer-btn{height:32px;padding:0 12px;border:none;border-radius:10px;background:var(--fill2);color:var(--t2);font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.sp-footer-btn:active{opacity:.7}
+.sp-footer-btn.danger{background:var(--red-bg);color:var(--red-t)}
 /* Search + filter */
 .sp-search{padding:8px 14px;position:relative;flex-shrink:0}
 .sp-search input{width:100%;height:34px;border:none;border-radius:11px;padding:0 12px 0 34px;font-size:16px;background:var(--fill2);color:var(--t1);-webkit-appearance:none}
@@ -295,7 +302,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue"
 .sf.on-runner{background:var(--rr);color:#fff}
 .sf.on-boxmaker{background:var(--rb);color:#fff}
 /* Staff list */
-.sp-list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 14px 20px;min-height:0}
+.sp-list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:4px 14px 20px;min-height:0}
 .sp-group-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--t3);padding:12px 2px 5px}
 .srow{display:flex;align-items:center;gap:11px;background:var(--card);border-radius:15px;padding:11px 13px;cursor:pointer;box-shadow:var(--shadow-sm);margin-bottom:4px;user-select:none}
 .srow:active{opacity:.75;transform:scale(.99)}
@@ -312,7 +319,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue"
 .srow-arr{color:var(--t3);font-size:13px}
 
 /* ─── Edit page ──────────────────────────────────────────── */
-.ep-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:22px 16px calc(28px + var(--sb));min-height:0}
+.ep-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 16px calc(32px + var(--sb));min-height:0}
 .ep-av-wrap{display:flex;justify-content:center;margin-bottom:20px}
 .ep-av{width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800}
 .ep-av.rp{background:var(--rp-soft);color:var(--rp)}
@@ -320,19 +327,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue"
 .ep-av.rb{background:var(--rb-soft);color:var(--rb)}
 .ep-av.rn{background:var(--fill);color:var(--t3)}
 .field-lbl{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;padding-left:3px}
-.field-in{width:100%;height:48px;border:none;border-radius:13px;padding:0 14px;font-size:16px;font-weight:500;background:var(--fill2);color:var(--t1);-webkit-appearance:none;margin-bottom:16px}
+.field-in{width:100%;height:52px;border:none;border-radius:13px;padding:0 14px;font-size:17px;font-weight:500;background:var(--fill2);color:var(--t1);-webkit-appearance:none;margin-bottom:18px;position:relative;z-index:1;display:block}
 .field-in:focus{outline:none;box-shadow:0 0 0 2px var(--accent)}
 .role-grid{display:flex;gap:8px;margin-bottom:20px}
 .role-card{flex:1;padding:14px 6px 12px;border:none;border-radius:15px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--fill2);user-select:none;border:2.5px solid transparent;transition:border-color .12s,background .12s;-webkit-appearance:none}
 .role-card:hover{opacity:.85}
 .role-card:active{opacity:.75}
-.role-card.sp{background:var(--rp-soft);border-color:var(--rp)}
-.role-card.sr{background:var(--rr-soft);border-color:var(--rr)}
-.role-card.sb2{background:var(--rb-soft);border-color:var(--rb)}
+.role-card.rcs-packer{background:var(--rp-soft);border-color:var(--rp)}
+.role-card.rcs-runner{background:var(--rr-soft);border-color:var(--rr)}
+.role-card.rcs-boxmaker{background:var(--rb-soft);border-color:var(--rb)}
 .rc-dot{width:18px;height:18px;border-radius:50%}
 .rc-dot.rp{background:var(--rp)}.rc-dot.rr{background:var(--rr)}.rc-dot.rb{background:var(--rb)}
 .rc-lbl{font-size:11px;font-weight:700;color:var(--t2)}
-.role-card.sp .rc-lbl{color:var(--rp)}.role-card.sr .rc-lbl{color:var(--rr)}.role-card.sb2 .rc-lbl{color:var(--rb)}
+.role-card.rcs-packer .rc-lbl{color:var(--rp)}.role-card.rcs-runner .rc-lbl{color:var(--rr)}.role-card.rcs-boxmaker .rc-lbl{color:var(--rb)}
 .ep-save{width:100%;padding:15px;border:none;border-radius:14px;background:var(--accent);color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:10px}
 .ep-save:active{background:var(--accent2)}
 .ep-del{width:100%;padding:13px;border:none;border-radius:14px;background:var(--red-bg);color:var(--red-t);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px}
@@ -589,6 +596,12 @@ function disconnectSync(){
   ghToken="";gistId="";lsSave();setSyncUI("none");render();
 }
 
+function resetToDefault(){
+  if(!confirm("Reset staff list to the default?\nThis removes any added/deleted staff.\nAttendance records stay."))return;
+  staff=DEFAULT_STAFF.map(s=>({...s}));
+  save();toast("Staff list reset");sv="list";renderSettings();
+}
+
 /* ═══════════════════════════════════════════════════════════
    TOAST
 ═══════════════════════════════════════════════════════════ */
@@ -730,7 +743,7 @@ function setERole(r){
   eRole=r;
   document.querySelectorAll(".role-card").forEach(c=>{
     const cr=c.getAttribute("data-r");
-    const map={packer:"sp",runner:"sr",boxmaker:"sb2"};
+    const map={packer:"rcs-packer",runner:"rcs-runner",boxmaker:"rcs-boxmaker"};
     c.className="role-card"+(cr===r?" "+map[cr]:"");
   });
   const av=document.getElementById("ep-av");
@@ -858,7 +871,10 @@ function renderSettings(){
         <button class="sf${srf==="boxmaker"?" on-boxmaker":""}" onclick="srf='boxmaker';renderSettings()">🔴 Box makers ${cnt.boxmaker}</button>
       </div>
       <div class="sp-list">${rows||'<div class="empty" style="padding:40px 0"><i class="ti ti-user-search"></i>No staff found</div>'}</div>
-      ${ghToken?`<div style="padding:10px 14px;flex-shrink:0"><button class="sheet-btn danger" style="font-size:13px" onclick="disconnectSync()"><i class="ti ti-brand-github" style="font-size:14px"></i>Disconnect GitHub sync</button></div>`:""}
+      <div style="padding:8px 14px 4px;flex-shrink:0;display:flex;gap:6px;flex-wrap:wrap">
+        ${ghToken?`<button class="sp-footer-btn danger" onclick="disconnectSync()"><i class="ti ti-brand-github" style="font-size:12px"></i> Disconnect sync</button>`:""}
+        <button class="sp-footer-btn" onclick="resetToDefault()"><i class="ti ti-refresh" style="font-size:12px"></i> Reset staff list</button>
+      </div>
     </div>`;
     return;
   }
@@ -867,7 +883,7 @@ function renderSettings(){
   const isAdd=sv==="add";
   const dName=isAdd?eName:(editP?.n||"");
   const rCards=ROLES.map(r=>{
-    const map={packer:"sp",runner:"sr",boxmaker:"sb2"};
+    const map={packer:"rcs-packer",runner:"rcs-runner",boxmaker:"rcs-boxmaker"};
     return`<button class="role-card${eRole===r?" "+map[r]:""}" data-r="${r}" onclick="setERole('${r}')">
       <div class="rc-dot ${ROLE_CLASS[r]}"></div>
       <div class="rc-lbl">${RL[r]}</div>
@@ -877,23 +893,26 @@ function renderSettings(){
   root.innerHTML=`<div class="sp">
     <div class="sp-top">
       <button class="sp-back" onclick="sv='list';renderSettings()"><i class="ti ti-chevron-left"></i><span>Staff</span></button>
-      <span class="sp-title">${isAdd?"New employee":"Edit employee"}</span>
-      <div style="width:32px"></div>
+      <span class="sp-title">${isAdd?"New employee":"Edit"}</span>
+      <button class="ep-save-top" onclick="saveEdit()">${isAdd?"Add":"Save"}</button>
     </div>
     <div class="ep-scroll">
-      <div class="ep-av-wrap"><div class="ep-av ${ROLE_CLASS[eRole]||"rn"}" id="ep-av">${dName?ini(dName):"?"}</div></div>
-      <div class="field-lbl">Name</div>
-      <input class="field-in" id="en" value="${hesc(dName)}" placeholder="Full name"
+      <div class="field-lbl">Full name</div>
+      <input class="field-in" id="en" value="${hesc(dName)}" placeholder="e.g. Jane Smith"
         autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false"
-        oninput="eName=this.value;const a=document.getElementById('ep-av');if(a)a.textContent=eName?ini(eName):'?'"
         onkeydown="if(event.key==='Enter'){event.preventDefault();saveEdit();}"/>
       <div class="field-lbl">Role</div>
       <div class="role-grid">${rCards}</div>
-      <button class="ep-save" onclick="saveEdit()"><i class="ti ti-${isAdd?"plus":"check"}" style="font-size:15px"></i> ${isAdd?"Add to staff":"Save changes"}</button>
-      ${!isAdd?`<button class="ep-del" onclick="delPerson()"><i class="ti ti-trash" style="font-size:15px"></i> Remove from staff</button>`:""}
+      <button class="ep-save" onclick="saveEdit()">
+        <i class="ti ti-${isAdd?"plus":"check"}" style="font-size:15px"></i>
+        ${isAdd?"Add to staff":"Save changes"}
+      </button>
+      ${!isAdd?`<button class="ep-del" onclick="delPerson()">
+        <i class="ti ti-trash" style="font-size:15px"></i> Remove from staff
+      </button>`:""}
     </div>
   </div>`;
-  if(isAdd)setTimeout(()=>document.getElementById("en")?.focus(),80);
+  setTimeout(()=>document.getElementById("en")?.focus(),80);
 }
 
 /* ═══════════════════════════════════════════════════════════
