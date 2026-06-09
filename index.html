@@ -132,63 +132,103 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue"
 .qbtn.qc{background:var(--fill);color:var(--t2)}
 
 /* ─── Section head ───────────────────────────────────────── */
-.sec-head{display:flex;align-items:center;gap:8px;padding:10px 12px 4px}
-.sec-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t3)}
-.sec-cnt{font-size:11px;font-weight:600;background:var(--fill);color:var(--t2);border-radius:20px;padding:1px 7px}
+.sec-head{display:flex;align-items:center;gap:8px;padding:12px 4px 5px}
+.sec-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--t3)}
+.sec-cnt{font-size:11px;font-weight:600;background:var(--fill);color:var(--t2);border-radius:20px;padding:1px 8px}
 
 /* ─── Staff rows ─────────────────────────────────────────── */
-.rows{display:flex;flex-direction:column;gap:5px;padding:0 12px}
+.rows{display:flex;flex-direction:column;gap:0;padding:0 12px}
+
+/* Divider between rows */
+.rows>.row+.row{border-top:1px solid var(--fill2)}
+.rows>.row:first-child{border-radius:16px 16px 0 0}
+.rows>.row:last-child{border-radius:0 0 16px 16px;border-top:1px solid var(--fill2)}
+.rows>.row:only-child{border-radius:16px}
+/* When sec-head appears between groups, reset rounding */
+.rows>.sec-head+.row{border-radius:0;border-top:none}
+.rows>.sec-head+.row:last-child{border-radius:0 0 16px 16px}
+
 .row{
   display:flex;align-items:center;
-  padding:0 7px 0 14px;border-radius:16px;
-  background:var(--card);box-shadow:var(--shadow);
-  gap:9px;min-height:62px;position:relative;touch-action:pan-y;
+  padding:12px 8px 12px 0;
+  background:var(--card);
+  gap:0;min-height:64px;position:relative;touch-action:pan-y;
+  box-shadow:none;
 }
-.row.sw{background:var(--green-bg)} .row.sa{background:var(--red-bg)}
-.row.se{background:var(--orange-bg)}.row.sl{background:var(--blue-bg)}
-/* Role stripe */
-.stripe{width:4px;height:100%;position:absolute;left:0;top:0;border-radius:16px 0 0 16px;background:var(--fill)}
-.row[data-r=packer]   .stripe{background:var(--rp)}
-.row[data-r=runner]   .stripe{background:var(--rr)}
-.row[data-r=boxmaker] .stripe{background:var(--rb)}
-/* Avatar */
-.av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;background:var(--fill);color:var(--t2)}
-.row[data-r=packer]   .av{background:var(--rp-soft);color:var(--rp)}
-.row[data-r=runner]   .av{background:var(--rr-soft);color:var(--rr)}
-.row[data-r=boxmaker] .av{background:var(--rb-soft);color:var(--rb)}
-.row.sw .av{background:var(--green-soft);color:var(--green-t)}
-.row.sa .av{background:var(--red-soft);  color:var(--red-t)}
-.row.se .av{background:var(--orange-soft);color:var(--orange-t)}
-.row.sl .av{background:var(--blue-soft); color:var(--blue-t)}
+/* First row in a group gets top shadow */
+.rows>.row:first-child,.rows>.sec-head+.row{
+  box-shadow:0 -1px 0 0 var(--fill2);
+}
+/* Whole list card shadow */
+.rows{
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+/* Status left bar — bold 5px, full height */
+.stripe{
+  width:5px;min-width:5px;align-self:stretch;
+  margin-right:12px;flex-shrink:0;
+  background:var(--fill2);
+}
+.row[data-r=packer]   .stripe{background:var(--fill2)}
+.row[data-r=runner]   .stripe{background:var(--fill2)}
+.row[data-r=boxmaker] .stripe{background:var(--fill2)}
+.row.sw .stripe{background:var(--green)}
+.row.sa .stripe{background:var(--red)}
+.row.se .stripe{background:var(--orange)}
+.row.sl .stripe{background:var(--blue)}
+
+/* Subtle tint on marked rows */
+.row.sw{background:var(--green-bg)}
+.row.sa{background:var(--red-bg)}
+.row.se{background:var(--orange-bg)}
+.row.sl{background:var(--blue-bg)}
+
 /* Name col */
-.name-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
-.nm{font-size:15px;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
-.chips{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
-/* Role chip */
-.rc{display:inline-flex;padding:1px 6px;border-radius:20px;font-size:10px;font-weight:700}
+.name-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.nm{font-size:15px;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2;letter-spacing:-.1px}
+.chips{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+
+/* Role chip — subtle, small */
+.rc{display:inline-flex;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:600;letter-spacing:.1px}
 .rc.rp{background:var(--rp-soft);color:var(--rp)}
 .rc.rr{background:var(--rr-soft);color:var(--rr)}
 .rc.rb{background:var(--rb-soft);color:var(--rb)}
-/* Status badge */
-.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px 2px 5px;border-radius:20px;font-size:11px;font-weight:700}
-.badge i{font-size:10px}
-.badge.bw{background:var(--green);color:#fff}
-.badge.ba{background:var(--red);  color:#fff}
+
+/* Status badge — solid, high contrast, easy to read */
+.badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 10px 4px 8px;border-radius:7px;
+  font-size:12px;font-weight:800;letter-spacing:.2px;
+  line-height:1;
+}
+.badge i{font-size:11px;opacity:.9}
+.badge.bw{background:var(--green); color:#fff}
+.badge.ba{background:var(--red);   color:#fff}
 .badge.be{background:var(--orange);color:#fff}
-.badge.bl{background:var(--blue); color:#fff}
+.badge.bl{background:var(--blue);  color:#fff}
 .badge.bn{display:none}
-/* Status buttons */
-.sbs{display:flex;gap:3px;flex-shrink:0}
-.sb{width:37px;height:46px;border:none;border-radius:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;user-select:none}
-.sb:active{transform:scale(.76)}
-.sb[data-s=work]  {background:var(--green-soft);color:var(--green-t)}
-.sb[data-s=absent]{background:var(--red-soft);  color:var(--red-t)}
-.sb[data-s=early] {background:var(--orange-soft);color:var(--orange-t)}
-.sb[data-s=leave] {background:var(--blue-soft); color:var(--blue-t)}
-.row.sw .sb[data-s=work]  {background:var(--green); color:#fff;box-shadow:0 2px 8px rgba(52,199,89,.5)}
-.row.sa .sb[data-s=absent]{background:var(--red);   color:#fff;box-shadow:0 2px 8px rgba(255,59,48,.5)}
-.row.se .sb[data-s=early] {background:var(--orange);color:#fff;box-shadow:0 2px 8px rgba(255,149,0,.5)}
-.row.sl .sb[data-s=leave] {background:var(--blue);  color:#fff;box-shadow:0 2px 8px rgba(0,122,255,.5)}
+
+/* Status buttons — icon only, compact, right-aligned */
+.sbs{display:flex;gap:2px;flex-shrink:0;padding-right:4px}
+.sb{
+  width:34px;height:52px;border:none;border-radius:0;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:14px;user-select:none;background:transparent;
+  color:var(--t3);transition:color .1s;
+  border-left:1px solid var(--fill2);
+}
+.sb:first-child{border-left:none}
+.sb:active{transform:scale(.8)}
+.sb:hover{color:var(--t1)}
+/* Active status button — colour + background highlight */
+.row.sw .sb[data-s=work]  {color:var(--green); background:var(--green-soft)}
+.row.sa .sb[data-s=absent]{color:var(--red);   background:var(--red-soft)}
+.row.se .sb[data-s=early] {color:var(--orange);background:var(--orange-soft)}
+.row.sl .sb[data-s=leave] {color:var(--blue);  background:var(--blue-soft)}
+
 /* Empty */
 .empty{text-align:center;padding:56px 16px;color:var(--t3);font-size:14px;line-height:1.6}
 .empty i{font-size:36px;display:block;margin-bottom:10px;opacity:.4}
@@ -226,15 +266,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue"
 .sp{
   position:fixed;inset:0;background:var(--bg);z-index:200;
   display:flex;flex-direction:column;
-  max-width:600px;margin:0 auto;
+  width:100%;max-width:600px;
+  left:50%;transform:translateX(-50%);
   padding-top:var(--st);
+  height:100%;height:100dvh;
 }
 .sp-top{
   display:flex;align-items:center;gap:10px;
   padding:12px 14px;background:var(--card);
   box-shadow:0 .5px 0 rgba(0,0,0,.1);flex-shrink:0;
 }
-.sp-back{width:32px;height:32px;border:none;background:none;color:var(--accent);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.sp-back{height:32px;padding:0 4px;border:none;background:none;color:var(--accent);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px}
+.sp-back span{font-size:14px;font-weight:600}
 .sp-title{flex:1;font-size:16px;font-weight:700}
 .sp-add{height:32px;padding:0 13px;border:none;border-radius:10px;background:var(--accent);color:#fff;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px}
 .sp-add:active{background:var(--accent2)}
@@ -252,7 +295,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue"
 .sf.on-runner{background:var(--rr);color:#fff}
 .sf.on-boxmaker{background:var(--rb);color:#fff}
 /* Staff list */
-.sp-list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 14px 20px}
+.sp-list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 14px 20px;min-height:0}
 .sp-group-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--t3);padding:12px 2px 5px}
 .srow{display:flex;align-items:center;gap:11px;background:var(--card);border-radius:15px;padding:11px 13px;cursor:pointer;box-shadow:var(--shadow-sm);margin-bottom:4px;user-select:none}
 .srow:active{opacity:.75;transform:scale(.99)}
@@ -269,7 +312,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue"
 .srow-arr{color:var(--t3);font-size:13px}
 
 /* ─── Edit page ──────────────────────────────────────────── */
-.ep-scroll{flex:1;overflow-y:auto;padding:22px 16px calc(20px + var(--sb))}
+.ep-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:22px 16px calc(28px + var(--sb));min-height:0}
 .ep-av-wrap{display:flex;justify-content:center;margin-bottom:20px}
 .ep-av{width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800}
 .ep-av.rp{background:var(--rp-soft);color:var(--rp)}
@@ -280,7 +323,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue"
 .field-in{width:100%;height:48px;border:none;border-radius:13px;padding:0 14px;font-size:16px;font-weight:500;background:var(--fill2);color:var(--t1);-webkit-appearance:none;margin-bottom:16px}
 .field-in:focus{outline:none;box-shadow:0 0 0 2px var(--accent)}
 .role-grid{display:flex;gap:8px;margin-bottom:20px}
-.role-card{flex:1;padding:12px 6px 10px;border:none;border-radius:15px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;background:var(--fill2);user-select:none;border:2.5px solid transparent;transition:border-color .12s,background .12s}
+.role-card{flex:1;padding:14px 6px 12px;border:none;border-radius:15px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--fill2);user-select:none;border:2.5px solid transparent;transition:border-color .12s,background .12s;-webkit-appearance:none}
+.role-card:hover{opacity:.85}
 .role-card:active{opacity:.75}
 .role-card.sp{background:var(--rp-soft);border-color:var(--rp)}
 .role-card.sr{background:var(--rr-soft);border-color:var(--rr)}
@@ -331,15 +375,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue"
 ═══════════════════════════════════════════════════════════ */
 const DEFAULT_STAFF=[
   {n:"Agnes Aruba",r:"packer"},{n:"Aporo Aruba",r:"packer"},{n:"Avarua",r:"packer"},
-  {n:"Ben McNicholas",r:"packer"},{n:"Charli Murphy",r:"packer"},{n:"Dewi",r:"packer"},
-  {n:"Emerald",r:"packer"},{n:"Emmanuel",r:"runner"},{n:"Emma L",r:"packer"},
-  {n:"Faataga Fao",r:"packer"},{n:"Hussein Koech",r:"runner"},{n:"Isabel Albinus",r:"packer"},
-  {n:"Jasmin Lulio",r:"boxmaker"},{n:"Jet Crozier",r:"packer"},{n:"June",r:"boxmaker"},
-  {n:"Kacu",r:"runner"},{n:"Karen Brown",r:"packer"},{n:"Koni Latu",r:"runner"},
-  {n:"Kyla-Le Perry",r:"packer"},{n:"Marta",r:"packer"},{n:"Natalia Tuitama",r:"boxmaker"},
-  {n:"Norhaffezan (Nora)",r:"packer"},{n:"Paula Leti",r:"packer"},{n:"Ryan Donald",r:"boxmaker"},
-  {n:"Erina Edmonds",r:"packer"},{n:"Sinuch Soy",r:"packer"},{n:"Toanui Moeara",r:"runner"},
-  {n:"Vikki Rakei",r:"packer"},
+  {n:"Ayushi Patel",r:"packer"},{n:"Ben McNicholas",r:"packer"},{n:"Brian K",r:"packer"},
+  {n:"Charli Murphy",r:"packer"},{n:"Dakota",r:"packer"},{n:"Dewi",r:"packer"},
+  {n:"Dhruv Patel",r:"packer"},{n:"Emerald",r:"packer"},{n:"Emmanuel",r:"runner"},
+  {n:"Faataga Fao",r:"packer"},{n:"Hillary",r:"packer"},{n:"Hussein Koech",r:"runner"},
+  {n:"Isabel Albinus",r:"packer"},{n:"Jasmin Lulio",r:"boxmaker"},{n:"Jet Crozier",r:"packer"},
+  {n:"Juanita",r:"packer"},{n:"Karen Brown",r:"packer"},{n:"Koni Latu",r:"runner"},
+  {n:"Marta",r:"packer"},{n:"Natalia Tuitama",r:"boxmaker"},{n:"Norhaffezan (Nora)",r:"packer"},
+  {n:"Paula Leti",r:"packer"},{n:"Peta",r:"packer"},{n:"Ryan Donald",r:"boxmaker"},
+  {n:"Sharon Edmonds",r:"packer"},{n:"Sinuch Soy",r:"packer"},{n:"Toanui Moeara",r:"runner"},
+  {n:"Vikki Rakei",r:"packer"},{n:"Walid Mahmodi",r:"packer"},{n:"Waka",r:"packer"},
 ];
 const ROLES=["packer","runner","boxmaker"];
 const RL={packer:"Packer",runner:"Runner",boxmaker:"Box maker"};
@@ -603,11 +648,14 @@ function patchRow(p){
   const st=gs(p),si=STATUS_INFO[st],role=el.getAttribute("data-r");
   el.className="row"+(si?" "+si.cls:"");
   el.setAttribute("data-r",role);
+  // Patch badge
   const b=el.querySelector(".badge");
   if(b){
     b.className="badge"+(si?" "+si.badge:" bn");
     b.innerHTML=si?`<i class="ti ${si.icon}"></i>${si.short}`:"";
   }
+  // Patch stripe (no colour class needed — CSS handles via row class)
+  // Patch active button highlight (CSS-driven, no JS needed)
 }
 
 function updateStats(){
@@ -641,21 +689,29 @@ function openAdd(){
 }
 
 function saveEdit(){
-  const newName=(document.getElementById("en")?.value||"").trim()||eName;
-  if(!newName)return;
+  // Always read direct from input — most reliable on both mobile and PC
+  const inp=document.getElementById("en");
+  const newName=(inp?inp.value:"").trim();
+  if(!newName){
+    if(inp){inp.focus();inp.style.boxShadow="0 0 0 2px var(--red)";}
+    toast("Please enter a name");return;
+  }
+  const newRole=eRole;
   if(sv==="add"){
-    if(staff.find(s=>s.n===newName)){toast("Name already exists");return;}
-    staff.push({n:newName,r:eRole});
+    if(staff.find(s=>s.n===newName)){toast("Name already exists");if(inp)inp.focus();return;}
+    staff.push({n:newName,r:newRole});
     save();toast(newName+" added ✓");
   }else{
-    const old=editP.n,idx=staff.findIndex(x=>x.n===old);
+    const oldName=editP.n;
+    const idx=staff.findIndex(x=>x.n===oldName);
     if(idx<0)return;
-    if(newName!==old){
+    if(newName!==oldName){
+      // Rename in attendance data
       Object.values(dat).forEach(day=>{
-        if(day[old]!==undefined){day[newName]=day[old];delete day[old];}
+        if(oldName in day){day[newName]=day[oldName];delete day[oldName];}
       });
     }
-    staff[idx]={n:newName,r:eRole};
+    staff[idx]={n:newName,r:newRole};
     save();toast("Saved ✓");
   }
   sv="list";editP=null;renderSettings();
@@ -664,9 +720,9 @@ function saveEdit(){
 function delPerson(){
   if(!editP)return;
   const n=editP.n;
-  if(!confirm("Remove "+n+"?\nThis also removes their attendance history."))return;
+  if(!confirm("Remove "+n+" from staff?\nThis also clears their attendance history."))return;
   staff=staff.filter(x=>x.n!==n);
-  Object.values(dat).forEach(d=>delete d[n]);
+  Object.values(dat).forEach(d=>{delete d[n];});
   save();toast(n+" removed");sv="list";editP=null;renderSettings();
 }
 
@@ -788,7 +844,7 @@ function renderSettings(){
 
     root.innerHTML=`<div class="sp">
       <div class="sp-top">
-        <button class="sp-back" onclick="closeSettings()"><i class="ti ti-chevron-left"></i></button>
+        <button class="sp-back" onclick="closeSettings()"><i class="ti ti-chevron-left"></i><span>Back</span></button>
         <span class="sp-title">Staff (${staff.length})</span>
         <button class="sp-add" onclick="openAdd()"><i class="ti ti-plus" style="font-size:12px"></i> Add</button>
       </div>
@@ -820,7 +876,7 @@ function renderSettings(){
 
   root.innerHTML=`<div class="sp">
     <div class="sp-top">
-      <button class="sp-back" onclick="sv='list';renderSettings()"><i class="ti ti-chevron-left"></i></button>
+      <button class="sp-back" onclick="sv='list';renderSettings()"><i class="ti ti-chevron-left"></i><span>Staff</span></button>
       <span class="sp-title">${isAdd?"New employee":"Edit employee"}</span>
       <div style="width:32px"></div>
     </div>
@@ -828,8 +884,9 @@ function renderSettings(){
       <div class="ep-av-wrap"><div class="ep-av ${ROLE_CLASS[eRole]||"rn"}" id="ep-av">${dName?ini(dName):"?"}</div></div>
       <div class="field-lbl">Name</div>
       <input class="field-in" id="en" value="${hesc(dName)}" placeholder="Full name"
-        autocomplete="off" autocorrect="off" autocapitalize="words"
-        oninput="eName=this.value;const a=document.getElementById('ep-av');if(a)a.textContent=eName?ini(eName):'?'"/>
+        autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false"
+        oninput="eName=this.value;const a=document.getElementById('ep-av');if(a)a.textContent=eName?ini(eName):'?'"
+        onkeydown="if(event.key==='Enter'){event.preventDefault();saveEdit();}"/>
       <div class="field-lbl">Role</div>
       <div class="role-grid">${rCards}</div>
       <button class="ep-save" onclick="saveEdit()"><i class="ti ti-${isAdd?"plus":"check"}" style="font-size:15px"></i> ${isAdd?"Add to staff":"Save changes"}</button>
@@ -903,7 +960,6 @@ function render(){
     const st=gs(s.n),si=STATUS_INFO[st],ep=esc(s.n);
     return`<div class="row${si?" "+si.cls:""}" data-p="${hesc(s.n)}" data-r="${s.r}" ontouchstart="rts(event,'${ep}')" ontouchend="rte(event,'${ep}')">
       <div class="stripe"></div>
-      <div class="av">${ini(s.n)}</div>
       <div class="name-col">
         <span class="nm">${s.n}</span>
         <div class="chips">
@@ -917,12 +973,15 @@ function render(){
 
   let rows="";
   if(!filtered.length){
-    rows=`<div class="empty"><i class="ti ti-user-search"></i>${q?`No one named "${q}"`:`No ${RL[rf]||"staff"} found`}</div>`;
+    rows=`<div class="rows"><div class="empty"><i class="ti ti-user-search"></i>${q?'No one named "'+q+'"':('No '+(RL[rf]||'staff')+' found')}</div></div>`;
   }else{
-    rows+=none.map(makeRow).join("");
-    if(marked.length){
-      rows+=`<div class="sec-head"><span class="sec-lbl">Marked</span><span class="sec-cnt">${marked.length}</span></div>`;
-      rows+=marked.map(makeRow).join("");
+    if(none.length&&marked.length){
+      // Two separate card groups
+      rows=`<div class="rows">${none.map(makeRow).join("")}</div>
+      <div class="sec-head"><span class="sec-lbl">Marked</span><span class="sec-cnt">${marked.length}</span></div>
+      <div class="rows">${marked.map(makeRow).join("")}</div>`;
+    }else{
+      rows=`<div class="rows">${[...none,...marked].map(makeRow).join("")}</div>`;
     }
   }
 
@@ -973,7 +1032,7 @@ function render(){
       <button class="qbtn qc" onclick="clearDay()"><i class="ti ti-eraser" style="font-size:12px"></i>Clear day</button>
     </div>
 
-    <div class="rows">${rows}</div>
+    <div style="padding:0 12px">${rows}</div>
   </div>`;
 
   if(view==="settings")renderSettings();
